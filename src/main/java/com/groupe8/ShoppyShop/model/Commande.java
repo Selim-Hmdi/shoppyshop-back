@@ -3,9 +3,7 @@ package com.groupe8.ShoppyShop.model;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -38,8 +35,7 @@ public class Commande implements Serializable {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	@OneToMany(targetEntity = Ligne.class, mappedBy = "commande")
-	private List<Ligne> lignes = new ArrayList<>();
+	private String infos;
 
 	@Version
 	private int version;
@@ -51,10 +47,6 @@ public class Commande implements Serializable {
 		this.prixTotal = prixTotal;
 		this.date = date;
 		this.user = user;
-	}
-
-	public void addLignes(Ligne ligne) {
-		this.lignes.add(ligne);
 	}
 
 	public Integer getId() {
@@ -88,13 +80,19 @@ public class Commande implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-	public List<Ligne> getLignes() {
-		return lignes;
+	
+	public String getInfos() {
+		return infos;
 	}
 
-	public void setLignes(List<Ligne> lignes) {
-		this.lignes = lignes;
+	public void setInfos(String infos) {
+		List<Ligne> lignes = new ArrayList<>();
+		String res = "";
+		for (Ligne l : lignes) {
+			res += l.getArticle().getId() + "-" + l.getQuantite() + "/";
+		}
+		this.infos = res;
+		this.infos = infos;
 	}
 
 	public int getVersion() {
@@ -107,7 +105,8 @@ public class Commande implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Commande [prixTotal=" + prixTotal + ", date=" + date + ", user=" + user + ", lignes=" + lignes + "]";
+		return "Commande [id=" + id + ", prixTotal=" + prixTotal + ", date=" + date + ", user=" + user + ", infos="
+				+ infos + "]";
 	}
 
 }

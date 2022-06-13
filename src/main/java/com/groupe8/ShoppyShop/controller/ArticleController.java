@@ -14,34 +14,39 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.groupe8.ShoppyShop.exception.ResourceNotFoundException;
 import com.groupe8.ShoppyShop.model.Article;
-import com.groupe8.ShoppyShop.repository.ArticleRepository;
+import com.groupe8.ShoppyShop.service.ArticleService;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/articles")
 public class ArticleController {
+	private ArticleService service;
+	
+	
 	@Autowired
-	private ArticleRepository repository;
+	public ArticleController(ArticleService service) {
+		this.service = service;
+	}
 
 	@GetMapping
 	public List<Article> findAllArticles() {
-		return repository.findAll();
+		return service.findAll();
 	}
 
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<Article> findArticleById(@PathVariable(name = "id") Integer id) {
-		Article article = repository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("L'article avec l'id " + id + " est introuvable"));
+		Article article = service.findById(id);
 		return ResponseEntity.ok(article);
 	}
 
 	@GetMapping("/article/{category}")
-	public List<Article> findByCategory(@PathVariable(name = "category") String category) {
-		return repository.findByCategorie(category);
+	public List<Article> findByCategorie(@PathVariable(name = "category") String categorie) {
+		return service.findByCategorie(categorie);
 	}
 
 	@PostMapping
 	public Article create(@RequestBody Article article) {
-		return repository.save(article);
+		return service.save(article);
 	}
 }

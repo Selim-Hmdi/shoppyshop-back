@@ -42,6 +42,14 @@ public class Article implements Serializable {
 		this.categorie = categorie;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public String getMarque() {
 		return marque;
 	}
