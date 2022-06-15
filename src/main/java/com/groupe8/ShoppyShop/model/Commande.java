@@ -86,13 +86,7 @@ public class Commande implements Serializable {
 	}
 
 	public void setInfos(String infos) {
-		List<Ligne> lignes = new ArrayList<>();
-		String res = "";
-		for (Ligne l : lignes) {
-			res += l.getArticle().getId() + "-" + l.getQuantite() + "/";
-		}
-		this.infos = res;
-		this.infos = infos;
+
 	}
 
 	public int getVersion() {
