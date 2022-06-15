@@ -22,8 +22,8 @@ public class CommandeController {
 		this.service = service;
 	}
 
-	@PostMapping("/add/{id}")
-	public Commande createCommande(@RequestBody Commande commande, @PathVariable("id") Integer userId) {
+	@PostMapping("/add/{userId}")
+	public Commande createCommande(@RequestBody Commande commande, @PathVariable("userId") Integer userId) {
 		return service.saveCommande(commande, userId);
 	}
 }
