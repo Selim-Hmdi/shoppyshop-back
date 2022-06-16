@@ -43,11 +43,16 @@ public class Commande implements Serializable {
 	public Commande() {
 	}
 
-	public Commande(double prixTotal, LocalDateTime date, User user) {
+	
+
+	public Commande(double prixTotal, LocalDateTime date, User user, String infos) {
 		this.prixTotal = prixTotal;
 		this.date = date;
 		this.user = user;
+		this.infos = infos;
 	}
+
+
 
 	public Integer getId() {
 		return id;
