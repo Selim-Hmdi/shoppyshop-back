@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.groupe8.ShoppyShop.exception.ResourceNotFoundException;
 import com.groupe8.ShoppyShop.model.Article;
 import com.groupe8.ShoppyShop.service.ArticleService;
 
@@ -53,10 +52,11 @@ public class ArticleController {
 	}
 	
 	@PutMapping("/{id}")
-	public Article update(@RequestBody Article article) {
-		service.save(article);
-		return service.findById(article.getId());
+	public ResponseEntity<Article> update(@PathVariable(name = "id") Integer id, @RequestBody Article article) {
+		Article updatedArticle = service.update(id, article);
+		return ResponseEntity.ok(updatedArticle);
 	}
+
 	
 	@DeleteMapping("/{id}")
 	public List<Article> delete(@PathVariable(name="id") int id) {

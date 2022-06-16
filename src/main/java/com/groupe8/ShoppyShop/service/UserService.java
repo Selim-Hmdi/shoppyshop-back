@@ -7,14 +7,18 @@ import org.springframework.stereotype.Service;
 
 import com.groupe8.ShoppyShop.exception.BadArgumentException;
 import com.groupe8.ShoppyShop.exception.ResourceNotFoundException;
+import com.groupe8.ShoppyShop.model.Article;
 import com.groupe8.ShoppyShop.model.User;
 import com.groupe8.ShoppyShop.repository.UserRepository;
 
 @Service
 public class UserService {
+	private UserRepository repository;
 
 	@Autowired
-	private UserRepository repository;
+	public UserService(UserRepository repository) {
+		this.repository = repository;
+	}
 
 	public User findById(Integer id) throws ResourceNotFoundException {
 		return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(
@@ -43,12 +47,16 @@ public class UserService {
 		}
 		return repository.save(user);
 	}
-	
-	public User update(User user) {
-		repository.save(user);
-		return repository.findById(user.getId()).get();
-	}
 
+	public User update(Integer id, User user) {
+		User userToUpdate = findById(id);
+		userToUpdate.setAdresse(user.getAdresse());
+		userToUpdate.setVille(user.getVille());
+		userToUpdate.setPays(user.getPays());
+		userToUpdate.setTelephone(user.getTelephone());
+		return repository.save(userToUpdate);
+	}
+	
 	private boolean emailExists(String email) {
 		return repository.findByEmail(email).isPresent();
 	}

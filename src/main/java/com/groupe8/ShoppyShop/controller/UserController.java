@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.groupe8.ShoppyShop.model.Article;
 import com.groupe8.ShoppyShop.model.User;
 import com.groupe8.ShoppyShop.service.UserService;
 
@@ -48,9 +49,9 @@ public class UserController {
 		return service.save(user);
 	}
 	
-	@PutMapping
-	public User updateUser(@RequestBody User user) {
-		service.save(user);
-		return service.findById(user.getId());
+	@PutMapping("/{id}")
+	public ResponseEntity<User> updateUser(@PathVariable(name = "id") Integer id, @RequestBody User user) {
+		User updatedUser = service.update(id, user);
+		return ResponseEntity.ok(updatedUser);
 	}
 }

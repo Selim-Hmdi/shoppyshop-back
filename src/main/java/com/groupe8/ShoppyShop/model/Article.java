@@ -20,7 +20,7 @@ public class Article implements Serializable {
 
 	private String marque;
 
-	private int prix;
+	private double prix;
 
 	private String description;
 
@@ -34,7 +34,7 @@ public class Article implements Serializable {
 	public Article() {
 	}
 
-	public Article(String marque, int prix, String description, String imageUrl, String categorie) {
+	public Article(String marque, double prix, String description, String imageUrl, String categorie) {
 		this.marque = marque;
 		this.prix = prix;
 		this.description = description;
@@ -42,7 +42,7 @@ public class Article implements Serializable {
 		this.categorie = categorie;
 	}
 	
-	public Article(int id, String marque, int prix, String description, String imageUrl, String categorie) {
+	public Article(int id, String marque, double prix, String description, String imageUrl, String categorie) {
 		this.id = id;
 		this.marque = marque;
 		this.prix = prix;
@@ -67,11 +67,11 @@ public class Article implements Serializable {
 		this.marque = marque;
 	}
 
-	public int getPrix() {
+	public double getPrix() {
 		return prix;
 	}
 
-	public void setPrix(int prix) {
+	public void setPrix(double prix) {
 		this.prix = prix;
 	}
 

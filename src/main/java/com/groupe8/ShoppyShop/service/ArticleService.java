@@ -35,9 +35,14 @@ public class ArticleService {
 		return repository.save(article);
 	}
 	
-	public Article update(Article article) {
-		repository.save(article);
-		return repository.findById(article.getId()).get();
+	public Article update(Integer id, Article article) {
+		Article articleToUpdate = findById(id);
+		articleToUpdate.setMarque(article.getMarque());
+		articleToUpdate.setPrix(article.getPrix());
+		articleToUpdate.setDescription(article.getDescription());
+		articleToUpdate.setImageUrl(article.getImageUrl());
+		articleToUpdate.setCategorie(article.getCategorie());
+		return repository.save(articleToUpdate);
 	}
 	
 	public List<Article> delete(Integer id) {
