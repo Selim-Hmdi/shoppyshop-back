@@ -35,24 +35,17 @@ public class Commande implements Serializable {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	private String infos;
-
 	@Version
 	private int version;
 
 	public Commande() {
 	}
 
-	
-
-	public Commande(double prixTotal, LocalDateTime date, User user, String infos) {
+	public Commande(double prixTotal, LocalDateTime date, User user) {
 		this.prixTotal = prixTotal;
 		this.date = date;
 		this.user = user;
-		this.infos = infos;
 	}
-
-
 
 	public Integer getId() {
 		return id;
@@ -86,14 +79,6 @@ public class Commande implements Serializable {
 		this.user = user;
 	}
 	
-	public String getInfos() {
-		return infos;
-	}
-
-	public void setInfos(String infos) {
-
-	}
-
 	public int getVersion() {
 		return version;
 	}
@@ -102,10 +87,10 @@ public class Commande implements Serializable {
 		this.version = version;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Commande [id=" + id + ", prixTotal=" + prixTotal + ", date=" + date + ", user=" + user + ", infos="
-				+ infos + "]";
+		return "Commande [prixTotal=" + prixTotal + ", date=" + date + ", user=" + user + "]";
 	}
-
 }
