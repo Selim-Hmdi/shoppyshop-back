@@ -43,6 +43,11 @@ public class UserService {
 		}
 		return repository.save(user);
 	}
+	
+	public User update(User user) {
+		repository.save(user);
+		return repository.findById(user.getId()).get();
+	}
 
 	private boolean emailExists(String email) {
 		return repository.findByEmail(email).isPresent();

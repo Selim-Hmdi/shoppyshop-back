@@ -41,6 +41,15 @@ public class Article implements Serializable {
 		this.imageUrl = imageUrl;
 		this.categorie = categorie;
 	}
+	
+	public Article(int id, String marque, int prix, String description, String imageUrl, String categorie) {
+		this.id = id;
+		this.marque = marque;
+		this.prix = prix;
+		this.description = description;
+		this.imageUrl = imageUrl;
+		this.categorie = categorie;
+	}
 
 	public Integer getId() {
 		return id;

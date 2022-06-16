@@ -35,5 +35,15 @@ public class ArticleService {
 		return repository.save(article);
 	}
 	
+	public Article update(Article article) {
+		repository.save(article);
+		return repository.findById(article.getId()).get();
+	}
+	
+	public List<Article> delete(Integer id) {
+		repository.deleteById(id);
+		return repository.findAll();
+	}
+	
 	
 }
