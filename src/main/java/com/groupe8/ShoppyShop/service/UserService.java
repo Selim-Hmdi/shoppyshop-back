@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.groupe8.ShoppyShop.exception.BadArgumentException;
 import com.groupe8.ShoppyShop.exception.ResourceNotFoundException;
-import com.groupe8.ShoppyShop.model.Article;
 import com.groupe8.ShoppyShop.model.User;
 import com.groupe8.ShoppyShop.repository.UserRepository;
 
@@ -50,6 +49,8 @@ public class UserService {
 
 	public User update(Integer id, User user) {
 		User userToUpdate = findById(id);
+		userToUpdate.setNom(user.getNom());
+		userToUpdate.setPrenom(user.getPrenom());
 		userToUpdate.setAdresse(user.getAdresse());
 		userToUpdate.setVille(user.getVille());
 		userToUpdate.setPays(user.getPays());
